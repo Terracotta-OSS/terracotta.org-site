@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/Terracotta-OSS/terracotta.org-site.png?label=ready&title=Ready)](https://waffle.io/Terracotta-OSS/terracotta.org-site)
 
 This is the source code/files for the ehcache.org website.  The files in this repository are source files, some of which include templating and other raw bits that need to be "compiled"/"built" in order to have files that are suitable to go onto a webserver.
 
