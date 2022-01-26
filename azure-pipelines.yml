@@ -77,7 +77,7 @@ jobs:
           echo "Site ID $NETLIFY_SITE_ID"
           $(npm bin)/netlify deploy -d $BUILD_BINARIESDIRECTORY --json | tee netlify.json
           NETLIFY_URL=$(jq -r '.deploy_url' netlify.json)
-          echo "Informing GitHub about deploy url: ${NETLIFY_URL}"
+          echo "Informing GitHub about deploy url: ${NETLIFY_URL} via https://api.github.com/repos/Terracotta-OSS/terracotta.org-site/pulls/${SYSTEM_PULLREQUEST_PULLREQUESTNUMBER}/comments"
           #curl -H "Authorization: token ${GTOKEN}" -X POST -d "{\"body\": \"[A Live Preview](${NETLIFY_URL}) of this Pull Request at commit ${SYSTEM_PULLREQUEST_SOURCECOMMITID} is now available\", \"commit_id\": \"${SYSTEM_PULLREQUEST_SOURCECOMMITID}\"}" "https://api.github.com/repos/Terracotta-OSS/terracotta.org-site/pulls/${SYSTEM_PULLREQUEST_PULLREQUESTNUMBER}/comments"
           curl -i -u "${GITHUB_AUTH}" -X POST -d "{\"body\": \"[A Live Preview](${NETLIFY_URL}) of this Pull Request at commit ${SYSTEM_PULLREQUEST_SOURCECOMMITID} is now available\", \"commit_id\": \"${SYSTEM_PULLREQUEST_SOURCECOMMITID}\"}" "https://api.github.com/repos/Terracotta-OSS/terracotta.org-site/pulls/${SYSTEM_PULLREQUEST_PULLREQUESTNUMBER}/comments"
         displayName: 'Netlify Publish'
