@@ -86,5 +86,5 @@ jobs:
         env:
             NETLIFY_SITE_ID: $(netlify_site_id)
             NETLIFY_AUTH_TOKEN: $(netlify_auth_token)
-            GITHUB_AUTH: $(gh_user):$(gh_temp_token)
+            GITHUB_AUTH: $(gh_user):$(gh_token)
         condition: eq(variables['Build.Reason'], 'PullRequest')
