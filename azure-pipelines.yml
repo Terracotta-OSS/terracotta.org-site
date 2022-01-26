@@ -71,6 +71,7 @@ jobs:
           cat /etc/*elease*
           npm -v
           node -v
+          env
           npm install netlify-cli
           du -sh $BUILD_BINARIESDIRECTORY
           find $BUILD_BINARIESDIRECTORY | wc -l
