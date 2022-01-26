@@ -81,10 +81,10 @@ jobs:
           echo "Informing GitHub about deploy url: ${NETLIFY_URL} via https://api.github.com/repos/Terracotta-OSS/terracotta.org-site/pulls/${SYSTEM_PULLREQUEST_PULLREQUESTNUMBER}/comments"
           #curl -H "Authorization: token ${GTOKEN}" -X POST -d "{\"body\": \"[A Live Preview](${NETLIFY_URL}) of this Pull Request at commit ${SYSTEM_PULLREQUEST_SOURCECOMMITID} is now available\", \"commit_id\": \"${SYSTEM_PULLREQUEST_SOURCECOMMITID}\"}" "https://api.github.com/repos/Terracotta-OSS/terracotta.org-site/pulls/${SYSTEM_PULLREQUEST_PULLREQUESTNUMBER}/comments"
           set -x
-          curl -i -u "$(gh_user):${GTOKEN}" -X POST -d "{\"body\": \"[A Live Preview](${NETLIFY_URL}) of this Pull Request at commit ${SYSTEM_PULLREQUEST_SOURCECOMMITID} is now available\", \"commit_id\": \"${SYSTEM_PULLREQUEST_SOURCECOMMITID}\"}" "https://api.github.com/repos/Terracotta-OSS/terracotta.org-site/pulls/${SYSTEM_PULLREQUEST_PULLREQUESTNUMBER}/comments"
+          curl -i -u "${GITHUB_AUTH}" -X POST -d "{\"body\": \"[A Live Preview](${NETLIFY_URL}) of this Pull Request at commit ${SYSTEM_PULLREQUEST_SOURCECOMMITID} is now available\", \"commit_id\": \"${SYSTEM_PULLREQUEST_SOURCECOMMITID}\"}" "https://api.github.com/repos/Terracotta-OSS/terracotta.org-site/pulls/${SYSTEM_PULLREQUEST_PULLREQUESTNUMBER}/comments"
         displayName: 'Netlify Publish'
         env:
             NETLIFY_SITE_ID: $(netlify_site_id)
             NETLIFY_AUTH_TOKEN: $(netlify_auth_token)
-            GTOKEN: $(gh_token)
+            GITHUB_AUTH: $(gh_user):$(gh_temp_token)
         condition: eq(variables['Build.Reason'], 'PullRequest')
