@@ -1,0 +1,547 @@
+////
+ Copyright (c) 2024 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+ Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+////
+= Using Terracotta with Docker
+{docdate}
+:top: ../..
+:stylesdir: {top}/stylesheets
+
+*Prerequisites*:
+
+You must have a functional Docker environment and a foundational understanding of Docker operations. This includes tasks such as installing and configuring Docker, managing Docker images by starting and stopping them, and configuring fundamental options like volumes and port forwarding.
+
+== Introduction to Docker and Terracotta
+
+Docker's containerization technology enables seamless deployment and management of Terracotta instances across diverse environments, from development to production, ensuring consistent performance and resource utilization. This portability and reproducibility eliminate deployment issues caused by environmental differences, ensuring that Terracotta clusters behave identically regardless of the underlying infrastructure.
+
+One of the key advantages of this integration is the ability to rapidly provision and scale Terracotta clusters to meet changing demands and workload fluctuations. With Docker's flexibility, organizations can horizontally scale their Terracotta clusters by spinning up additional containers, allowing them to respond swiftly to increased traffic or data processing requirements.
+
+Furthermore, Docker's orchestration capabilities, in combination with tools like Kubernetes, simplify the management and monitoring of Terracotta clusters at scale. Automated deployment, scaling, and failover mechanisms ensure high availability and resilience, minimizing downtime and maximizing operational efficiency.
+
+By packaging Terracotta instances as Docker containers, organizations can achieve scalability and efficiency in handling caching and operational storage use cases. For example, containerized Terracotta clusters can be leveraged for high-performance caching of frequently accessed data, reducing database load and improving application responsiveness. Additionally, Terracotta's operational storage capabilities can be utilized for storing and processing large volumes of data in memory, enabling for instance real-time analytics.
+
+In essence, integrating Terracotta with Docker allows organizations to fully leverage the power of distributed in-memory data storage while embracing the scalability and portability offered by containerization. This integration enables seamless deployment, efficient resource utilization, and rapid scaling while minimizing infrastructure complexity.
+
+== Terracotta Docker Images
+
+The images are available on the private webMethods.io Docker registry, which requires login authentication. You will need to create authentication keys on the site https://containers.softwareag.com/user-profile
+
+After creating the keys, log in using the following command:
+
+[source,shell]
+----
+docker login -u <generated-username> -p <generated-key> sagcr.azurecr.io
+----
+
+You'll interact with various components when deploying and managing Terracotta clusters using Docker. Let's dive into the key components and how you can leverage them.
+
+* *Terracotta Server*
+
+The Terracotta Server is the backbone of your Terracotta cluster. It's responsible for coordinating data management and clustering operations.
+
+To set up a cluster, you'll need to launch multiple instances of the Terracotta Server Docker image, with each instance representing a cluster node. Terracotta cluster nodes are grouped by stripes.
+
+* *Terracotta Config Tool*
+
+After spinning up your Terracotta Server instances, you'll need to configure the cluster topology and settings using the Terracotta Config Tool. This command-line utility allows you to define resource configurations, specify cluster properties, and manage the overall cluster configuration.
+
+* *Terracotta Cluster Tool*
+
+The Cluster Tool is a utility to get information and perform maintenance operations on your Terracotta cluster.
+
+It provides detailed information about the cluster state, including active nodes.
+
+Additionally, you can perform operations like data backup and restoration using this tool.
+
+* *Terracotta Voter*
+
+In case of a failover scenario, the Terracotta Voter utility comes into play. As a human operator, you can use this tool to designate a new active Terracotta Server instance, ensuring cluster consistency and seamless failover operations.
+
+* *Terracotta Management Server*
+
+For a comprehensive web-based monitoring and management experience, Terracotta provides the Management Server. This application offers detailed insights into cluster health, performance metrics, and resource utilization, allowing you to proactively manage and optimize your Terracotta cluster.
+
+== Terracotta Server Docker Image
+
+=== Pulling the Terracotta Server Docker Image
+
+To pull the Terracotta Server image, use the following command:
+
+[source,shell]
+----
+docker pull sagcr.azurecr.io/terracotta-server:<version>
+----
+
+`Replace <version> with the desired Terracotta Server version, such as 10.15`
+
+=== Starting a Terracotta Server Instance
+
+To start a Terracotta Server instance as a Docker container, you'll use the `docker run` command with the appropriate parameters. Here's an example:
+
+[source,shell]
+----
+docker run -d \
+      -p 9410:9410 \
+      -h terracotta-server-1 \
+      --network terracotta-net \
+      --name terracotta-server-1 \
+      sagcr.azurecr.io/terracotta-server:10.15
+----
+
+Let's break down the parameters:
+
+* `-d`: Runs the container in detached mode, allowing it to run in the background.
+* `-p 9410:9410`: Maps the container's port 9410 to the host's port 9410. The Terracotta Server uses this port for inter-server communication, so you need to expose it.
+* `-h terracotta-server-1`: Sets the hostname for the container to `terracotta-server-1`. This hostname is used for identification within the Terracotta cluster.
+* `--network terracotta-net`: Specifies the Docker network that the container should join. In this case, it's `terracotta-net`. This network allows the Terracotta Server instances to communicate with each other and form a cluster.
+* `--name terracotta-server-1`: Assigns a name to the container for easy identification and management.
+* `sagcr.azurecr.io/terracotta-server:10.15`: Specifies the Docker image to use, which is the Terracotta Server image from the SoftwareAG/webmethods.io Docker registry, with the version `10.15`.
+
+To set up a Terracotta cluster, you'll need to launch multiple instances of the Terracotta Server Docker image, with each instance running in a separate container. These instances will communicate with each other over the specified network (`terracotta-net` in the example) and form a cluster.
+
+After starting the Terracotta Server instances, you'll need to configure the cluster topology, see the section:  <<configuring_with_config_tool>>.
+
+=== Additional Parameters
+
+**Persisting Terracotta Server Data with Docker Volumes**
+
+To fully utilize a Terracotta cluster, it's essential to persist data and configuration files across container restarts. The Terracotta Server writes various types of data to the filesystem, including:
+
+- In-memory data snapshots to avoid data loss during restarts
+- Log files
+- Configuration files
+
+To ensure data persistence, you can leverage Docker volumes by mounting a host directory to the container's `/opt/softwareag/run` directory. Here's an example `docker run` command:
+
+[source,bash]
+----
+docker run -d \
+      -v /path/to/local/directory:/opt/softwareag/run:rw \
+      -p 9410:9410 \
+      -h terracotta-server-1 \
+      --network terracotta-net \
+      --name terracotta-server-1 \
+      sagcr.azurecr.io/terracotta-server:10.15
+----
+
+In this command:
+
+- `-v /path/to/local/directory:/opt/softwareag/run:rw` mounts the `/path/to/local/directory` directory from the host machine to the `/opt/softwareag/run` directory inside the container, with read-write permissions.
+
+After running the container, you'll find the following directories inside `/path/on/host`:
+
+- `dataroots` and `metadata`: Contains the in-memory data snapshots and metadata descriptors.
+- `config`: Contains the Terracotta Server configuration files.
+- `logs` and `audit-logs`: Contains the server logs and audit logs.
+- `backups`: Contains on-demand data backups.
+
+By persisting these directories on the host, you ensure that your Terracotta Server's data, configuration, and logs are preserved across container restarts or replacements. This approach simplifies data management and enables seamless recovery in case of failures or maintenance operations.
+
+Remember to ensure that the Docker process has the necessary permissions to access and write to the host directories.
+
+Alternatively, you can optionally specify each of these directories individually using the corresponding environment variable parameters:
+
+- CONFIG_DIR
+- DATAROOT_DIR
+- METADATA_DIR
+- BACKUP_DIR
+- LOG_DIR
+- AUDIT_LOG_DIR.
+
+For example:
+[source,bash]
+----
+docker run -d \
+      -e DATAROOT_DIR=/path/to/data-directory \
+      -v /local/path/to/data-directory:/path/to/data-directory
+      -p 9410:9410 \
+      -h terracotta-server-1 \
+      --network terracotta-net \
+      --name terracotta-server-1 \
+      sagcr.azurecr.io/terracotta-server:10.15
+----
+The three important volumes to specify are the paths for data and metadata, configuration, and logs because we want to persist this information when restarting the Terracotta server.
+
+Alternatively, you can pass the parameters to the Docker image, and they will be passed to the start Terracotta server script.
+
+**Configuring Off-Heap Memory**
+
+The Terracotta Server uses off-heap memory to store in-memory data. You can specify the amount of off-heap memory to allocate using the `DEFAULT_OFFHEAP` environment variable. For example:
+
+[source,bash]
+----
+docker run -d \
+      -e DEFAULT_OFFHEAP="offheap-1:512MB,offheap-2:512MB"
+      ...
+----
+
+In this example, the Terracotta Server will allocate two off-heap resources, `offheap-1` and `offheap-2`, each with 512MB of memory.
+
+**Configuring Java Heap Size**
+
+Additionally, you can configure the Java heap size for the Terracotta Server JVM using the `JAVA_OPTS` environment variable. For instance:
+
+[source,bash]
+----
+docker run -d \
+      -e JAVA_OPTS="-Xmx8G" \
+      ...
+----
+
+This sets the maximum Java heap size to 8GB (`-Xmx=8G`).
+
+**Enabling JSON Logging**
+
+In specific scenarios, you may want to enable JSON logging for the Terracotta Server. To activate JSON logging, use the `JSON_LOGGING` environment variable:
+
+[source,bash]
+----
+docker run -d \
+      -e JSON_LOGGING=true \
+      ...
+----
+
+**Configuring Terracotta Server Security**
+
+The security setup requires specifying the location of a security folder using the `security-dir` setting.
+
+This security folder must be inside the mounted config folder in read-only mode.
+
+On the host machine, the config folder for a node might look like this:
+
+----
+/node-1/config/license.xml
+/node-1/config/cluster.cfg
+/node-1/config/security/server/...
+----
+
+Mount the config volume as usual in your Docker command:
+
+[source,bash]
+----
+docker run -d \
+      -v /node-1/config:/opt/softwareag/config \
+      ...
+----
+
+Ensure that the Docker process has the necessary permissions to access and read the security configuration files in the mounted directory.
+
+== Configuring the Terracotta Cluster with the with Docker Image of Config Tool [[configuring_with_config_tool]]
+
+The Terracotta Config Tool is used to activate the cluster and pass configuration and license information. To retrieve the Config Tool Docker image, use:
+
+[source,shell]
+----
+docker pull sagcr.azurecr.io/terracotta-config-tool:<version>
+----
+
+Replace `<version>` with the desired version, e.g., `10.15`
+
+As you know, the config tool is used to activate the cluster and apply the configuration and license. You may have already mounted a volume with the configuration persisted in a disk folder when starting the Terracotta server container. Please remember that by default, the license file name is `license.xml` and is referenced in `/opt/softwareag/config`.
+
+[source,shell]
+----
+docker run --env ACCEPT_EULA=Y \
+      --attach STDOUT --attach STDERR \
+      --volume /path/to/config-directory:/opt/softwareag/config:ro \
+      --network terracotta-net \
+      sagcr.azurecr.io/terracotta-config-tool:10.15 \
+      activate \
+      -cluster-name my-cluster \
+      -connect-to terracotta-server-1
+----
+
+And of course, you will use the same docker image to run the config tool attach nodes and stripes
+
+For instance, to attach a node to a stripe:
+
+[source,shell]
+----
+docker run --env ACCEPT_EULA=Y \
+      --attach STDOUT --attach STDERR \
+      --volume /path/to/config-directory:/opt/softwareag/config:ro \
+      --network terracotta-net \
+      sagcr.azurecr.io/terracotta-config-tool:10.15 \
+      attach \
+      -t node -d terracotta-server-1:9510 \
+      -s terracotta-server-2:9511
+----
+
+== Full example to start a 2 nodes single stripe cluster
+
+=== Create network
+
+[source,shell]
+----
+docker network create terracotta-net
+----
+
+=== Start Server 1
+
+Our local work folder is located at : ``/docker-test/10x-run``
+
+[source,shell]
+----
+docker run -d \
+      -v /docker-test/10x-run:/opt/softwareag/run:rw \
+      -p 2215:2215 \
+      -p 18130:18130 \
+      -h terracotta-server-1 \
+      --network terracotta-net \
+      --name terracotta-server-1 \
+      sagcr.azurecr.io/terracotta-server:10.15 \
+      -n Server-1-1 -p 2215 -g 18130 \
+      -r /opt/softwareag/run/Server-1-1/repository -m /opt/softwareag/run/Server-1-1/metadata -d dataroot:/opt/softwareag/run/Server-1-1/dataroot -o primary-server-resource:256MB,secondary-server-resource:256MB -L /opt/softwareag/run/Server-1-1/logs -y consistency
+----
+
+=== Start Server 2
+
+[source,shell]
+----
+docker run -d \
+      -v /docker-test/10x-run:/opt/softwareag/run:rw \
+      -p 40014:40014 \
+	  -p 10769:10769 \
+      -h terracotta-server-2 \
+      --network terracotta-net \
+      --name terracotta-server-2 \
+      sagcr.azurecr.io/terracotta-server:10.15 \
+	  -n Server-1-2 -p 40014 -g 10769 \
+	  -r /opt/softwareag/run/Server-1-2/repository -m /opt/softwareag/run/Server-1-2/metadata -d dataroot:/opt/softwareag/run/Server-1-2/dataroot -o primary-server-resource:256MB,secondary-server-resource:256MB -L /opt/softwareag/run/Server-1-2/logs -y consistency
+----
+
+At this point, you can verify that the servers are started in Diagnostic mode:
+
+[source,shell]
+----
+docker logs terracotta-server-1
+----
+
+[source,shell]
+----
+docker logs terracotta-server-2
+----
+
+==== 3) Attach server 2 to server 1
+
+[source,shell]
+----
+docker run --rm -it --env ACCEPT_EULA=Y \
+      --attach STDOUT --attach STDERR \
+      --volume /docker-test/10x-run/config:/opt/softwareag/config:ro \
+      --network terracotta-net \
+      --name terracotta-config-tool \
+      sagcr.azurecr.io/terracotta-config-tool:10.15 \
+      attach \
+      -t node -d terracotta-server-1:2215 -s terracotta-server-2:40014
+----
+
+=== 4) Activate cluster
+
+The license key ``Terracotta101.xml`` is located in our local folder at ``/docker-test/10x-run/config``
+
+[source,shell]
+----
+docker run --rm -it --env ACCEPT_EULA=Y \
+      --attach STDOUT --attach STDERR \
+      --volume /docker-test/10x-run/config:/opt/softwareag/config:ro \
+      --network terracotta-net \
+      --name terracotta-config-tool \
+      sagcr.azurecr.io/terracotta-config-tool:10.15 \
+      activate -n test-cluster -s terracotta-server-1:2215 -l /opt/softwareag/config/Terracotta101.xml
+----
+
+=== 5) Display cluster status
+
+[source,shell]
+----
+docker run --rm -it \
+      --network terracotta-net \
+      --name terracotta-cluster-tool \
+      sagcr.azurecr.io/terracotta-cluster-tool:10.15 \
+      status -cluster-name test-cluster -connect-to terracotta-server-1:2215
+----
+
+should give you a similar ouput:
+
+----
+| CLUSTER_NAME: test-cluster |
+| STRIPE: Badminton |
++------------------+----------------------------------+----------------+
+|    Node Name     |            Host-Port             |     Status     |
++------------------+----------------------------------+----------------+
+|    Server-1-1    |     terracotta-server-1:2215     |    PASSIVE     |
+------------------------------------------------------------------------
+|    Server-1-2    |    terracotta-server-2:40014     |     ACTIVE     |
++------------------+----------------------------------+----------------+
+----
+
+Your cluster is now ready and functional!
+
+== Terracotta Cluster Tool
+
+The Terracotta Cluster Tool provides various operations for managing the Terracotta cluster. To retrieve the Cluster Tool Docker image, use:
+
+[source,shell]
+----
+docker pull sagcr.azurecr.io/terracotta-cluster-tool:<version>
+----
+
+Here are some essential functions of the Cluster Tool:
+
+**Obtain the status of running servers or cluster**
+
+[source,shell]
+----
+docker run -it  \
+      --network terracotta-net \
+      sagcr.azurecr.io/terracotta-cluster-tool:10.15 \
+      status \
+      -connect-to terracotta-server-1 \
+      -cluster-name my-cluster
+----
+
+**Stop running servers**
+
+[source,shell]
+----
+docker run -it \
+      --network terracotta-net \
+      sagcr.azurecr.io/terracotta-cluster-tool:10.15 \
+      shutdown \
+      -connect-to terracotta-server-1 \
+      -cluster-name my-cluster
+----
+
+**Restart server**
+[source,shell]
+----
+docker restart terracotta-server-1
+----
+
+**Take backup of the cluster**
+
+[source,shell]
+----
+docker run -it --rm \
+      --network terracotta-net \
+      sagcr.azurecr.io/terracotta-cluster-tool:10.15 \
+      backup \
+      -connect-to terracotta-server-1 -cluster-name my-cluster
+----
+
+== Terracotta Management Server (TMS)
+
+The Terracotta Management Server (TMS) provides real-time information about the Terracotta cluster. To retrieve the TMS Docker image, use:
+
+[source,shell]
+----
+docker pull sagcr.azurecr.io/terracotta-management-server:<version>
+----
+
+To access the TMS, you need to expose the port from the container to the host. Here's an example command:
+
+[source,shell]
+----
+docker run -d \
+      -p 9480:9480 \
+      -h terracotta-management-server \
+      --network terracotta-net \
+      --name terracotta-management-server \
+      sagcr.azurecr.io/terracotta-management-server:10.15
+----
+
+You can then access the TMS via a web browser (``http://<docker-hostname>:9480``, where ``docker-hostname`` is the hostname of your docker host) and configure the address of the Terracotta cluster to monitor (e.g., `terracotta://terracotta-server-1:9410`).
+
+Alternatively, you can pass the cluster address and auto-connect settings when starting the container:
+
+[source,shell]
+----
+docker run -d \
+      -e TMS_DEFAULTURL="terracotta://terracotta-server-1:9410" \
+      -e TMS_AUTOCONNECT="true" \
+      -p 9480:9480 \
+      -h terracotta-management-server \
+      --network terracotta-net \
+      --name terracotta-management-server \
+      sagcr.azurecr.io/terracotta-management-server:10.15
+----
+
+Like the Terracotta server, the TMS saves certain information to disk, including the address of the cluster it will access, so we can specify a local volume to persist this information:
+
+[source,shell]
+----
+docker run -d \
+      -v /path/to/run-directory:/opt/softwareag/run:rw \
+      -p 9480:9480 \
+      -h terracotta-management-server \
+      --network terracotta-net \
+      --name terracotta-management-server \
+      sagcr.azurecr.io/terracotta-management-server:10.15
+----
+
+Since the TMS configuration file (`tmc.properties`) is located in the `/opt/softwareag/run` directory of the container, you can edit custom properties in this mounted volume.
+
+It is in this particular file that we will indicate the path to the security configuration files if the cluster is secured.
+
+For instance:
+[source,shell]
+----
+tms.security.https.enabled=true
+tms.security.root.directory: /opt/softwareag/run/config/security-root-directory
+tms.security.authorization.scheme: authenticated
+----
+
+== Terracotta Voter
+
+The Terracotta Voter utility is used by a human operator during failover scenarios when we configure the cluster to prioritize data coherence over cluster availability.
+
+This becomes necessary when there is a communication problem between servers within the same stripe (a group of Terracotta Server instances that share data).
+
+When prioritizing consistency, the servers will enter a suspended mode and will not allow clients operations. Instead, they will initiate an election process among the nodes that can still communicate with each other. Only the node that receives more than 50% of the votes will become active and allow back clients operations.
+
+However, a common scenario involves stripes with only two servers (Active and Passive). In such cases, neither server will have more than 50% of the votes during an election. This is where the Terracotta Voter utility comes into play, allowing a human operator to manually vote for one of the nodes to become active.
+
+**To retrieve the Voter Docker image, use:**
+
+[source,shell]
+----
+docker pull sagcr.azurecr.io/terracotta-voter:<version>
+----
+
+**Using the Terracotta Voter**
+[source,shell]
+----
+docker run -d \
+      -h terracotta-voter \
+      --network terracotta-net \
+      --name terracotta-voter \
+      sagcr.azurecr.io/terracotta-voter:10.15 \
+      -connect-to terracotta-server:9410
+----
+
+In the example above, the Terracotta Voter is used to vote for the Terracotta Server instance running on terracotta-server:9410. This manual intervention ensures that one of the servers becomes active, preserving data consistency and allowing clients to continue modifying data during the failover scenario.
+
+By leveraging the Terracotta Voter, developers can maintain data consistency and integrity in their Terracotta clusters, even in scenarios where automatic failover mechanisms are insufficient due to the cluster topology.
+
+== Troubleshooting
+
+In order to access the logs of the Terracotta server, look in the volume that you mounted to contain the logs (`/myplace/logs` using the parameter `-v /someplace:logs:rw` when starting the Terracotta Server container).
+
+We can also see if an error has been displayed on the console:
+
+[source,shell]
+----
+docker logs tc-server-1
+----
+
+[TIP]
+--
+If you don't see logs, it might be a folder permission issue, please check the permissions:
+
+- Log files: rw
+- Data files: rw
+- Configuration, license, security files: ro
+--
+
