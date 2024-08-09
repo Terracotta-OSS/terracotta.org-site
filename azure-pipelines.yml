@@ -77,11 +77,20 @@ jobs:
           echo "Site ID $NETLIFY_SITE_ID"
           npm exec -c "netlify deploy --dir $BUILD_BINARIESDIRECTORY --alias PR-${SYSTEM_PULLREQUEST_PULLREQUESTNUMBER} --json" | tee netlify.json
           NETLIFY_URL=$(jq -r '.deploy_url' netlify.json)
-          echo "Informing GitHub about deploy url: ${NETLIFY_URL}"
-          curl -H "Authorization: token ${GTOKEN}" -X POST -d "{\"body\": \"[A Live Preview](${NETLIFY_URL}) of this Pull Request at commit ${SYSTEM_PULLREQUEST_SOURCECOMMITID} is now available\", \"commit_id\": \"${SYSTEM_PULLREQUEST_SOURCECOMMITID}\"}" "https://api.github.com/repos/Terracotta-OSS/terracotta.org-site/pulls/${SYSTEM_PULLREQUEST_PULLREQUESTNUMBER}/comments"
+          echo "##vso[task.setvariable variable=netlify_url;]${NETLIFY_URL}"
+          echo "Will Inform GitHub about the preview url: ${NETLIFY_URL}"
+#          curl -H "Authorization: token ${GTOKEN}" -X POST -d "{\"body\": \"[A Live Preview](${NETLIFY_URL}) of this Pull Request at commit ${SYSTEM_PULLREQUEST_SOURCECOMMITID} is now available\", \"commit_id\": \"${SYSTEM_PULLREQUEST_SOURCECOMMITID}\"}" "https://api.github.com/repos/Terracotta-OSS/terracotta.org-site/pulls/${SYSTEM_PULLREQUEST_PULLREQUESTNUMBER}/comments"
         displayName: 'Netlify Publish'
         env:
             NETLIFY_SITE_ID: $(netlify_site_id)
             NETLIFY_AUTH_TOKEN: $(netlify_auth_token)
-            GTOKEN: $(gh_token)
+#            GTOKEN: $(gh_token)
         condition: eq(variables['Build.Reason'], 'PullRequest')
+      # GitHub Comment v0
+      # Write a comment to your GitHub entity i.e. issue or a pull request (PR).
+      - task: GitHubComment@0
+        inputs:
+          gitHubConnection: Terracotta-OSS
+          repositoryName: '$(Build.Repository.Name)' # string. Required. Repository. Default: $(Build.Repository.Name).
+          #id: # string. ID of the github pr/issue.
+          comment: "[A Live Preview]($(netlify_url)) of this Pull Request at commit $(System.PullRequest.SourceCommitId) is now available"
