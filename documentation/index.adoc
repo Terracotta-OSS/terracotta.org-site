@@ -12,9 +12,9 @@ permalink: /documentation/
 
 [options="header"]
 |===
-|10.15|&nbsp;
+|11.1|&nbsp;
 
-|Terracotta 10.15 Documentation|link:https://documentation.softwareag.com/terracotta/terracotta_10-15/index.htm[HTML, window="_blank"] \| link:https://documentation.softwareag.com/terracotta/terracotta_10-15/index.htm[PDF, window="_blank"]
+|Terracotta 11.1 Documentation|link:https://docs.webmethods.io/on-premises/terracotta/11.1.0/webhelp/index.html[HTML, window="_blank"]
 
 |Terracotta 10.x Presentation on High Availability and Failover-Tuning|link:/documentation/Terracotta_10x_Failover_Tuning.pptx[.pptx], link:/documentation/Terracotta_10x_Failover_Tuning.pdf[.pdf]
 
@@ -22,9 +22,9 @@ permalink: /documentation/
 
 [options="header"]
 |===
-|4.4.0|&nbsp;
+|4.4.1|&nbsp;
 
-|BigMemory Max 4.4.0 Documentation|link:https://documentation.softwareag.com/terracotta/terracotta_440/webhelp/bigmemory-max-webhelp/index.html[HTML, window="_blank"]
+|BigMemory Max 4.4.1 Documentation|link:https://docs.webmethods.io/on-premises/bigmemory-max/4.4.1/big-memory-max-webhelp/index.html[HTML, window="_blank"]
 
 |===
 
@@ -38,6 +38,18 @@ link:/about/license.html[License] (Terracotta Public License, Apache 2.0),  link
 [[historical_versions]]
 
 #### Historical Versions
+
+[options="header"]
+|===
+|10.7|&nbsp;
+|Terracotta 10.15 Documentation|https://documentation.softwareag.com/terracotta/terracotta_10-15/webhelp/index.html[HTML, window="_blank"]
+|===
+
+[options="header"]
+|===
+|10.7|&nbsp;
+|Terracotta 10.11 Documentation|https://documentation.softwareag.com/terracotta/terracotta_10-11/webhelp/index.html[HTML, window="_blank"]
+|===
 
 [options="header"]
 |===
