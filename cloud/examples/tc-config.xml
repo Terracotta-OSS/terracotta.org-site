@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tc:tc-config xmlns:tc="http://www.terracotta.org/config">
+  <servers>
+    <mirror-group>
+      <server host="terracotta-server-1" name="terracotta-server-1">
+        <data>/opt/softwareag/run/data</data>
+        <logs>/opt/softwareag/run/logs</logs>
+        <data-backup>/opt/softwareag/run/backup</data-backup>
+        <tsa-port>9510</tsa-port>
+        <tsa-group-port>9530</tsa-group-port>
+        <management-port>9540</management-port>
+        <dataStorage size="512m">
+          <offheap size="512m"/>
+        </dataStorage>
+      </server>
+      <server host="terracotta-server-2" name="terracotta-server-2">
+        <data>/opt/softwareag/run/data</data>
+        <logs>/opt/softwareag/run/logs</logs>
+        <data-backup>/opt/softwareag/run/backup</data-backup>
+        <tsa-port>9511</tsa-port>
+        <tsa-group-port>9531</tsa-group-port>
+        <management-port>9541</management-port>
+        <dataStorage size="512m">
+          <offheap size="512m"/>
+        </dataStorage>
+      </server>
+    </mirror-group>
+    <restartable enabled="false"/>
+  </servers>
+  <clients>
+    <logs>/opt/softwareag/run/client-logs</logs>
+  </clients>
+</tc:tc-config>
