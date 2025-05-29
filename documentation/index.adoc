@@ -28,7 +28,7 @@ permalink: /documentation/
 
 |===
 
-link:https://confluence.terracotta.org/display/release/Terracotta+10.x+and+BigMemory+4.x+Platform+Support[Terracotta & BigMemory Max Platform and Release Compatibility Tables, role="external", window="_blank"]
+link:https://confluence.terracotta.org/display/release/Terracotta+and+BigMemory+Platform+Support[Terracotta & BigMemory Max Platform and Release Compatibility Tables, role="external", window="_blank"]
 
 
 
