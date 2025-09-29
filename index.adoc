@@ -5,7 +5,7 @@ layout: home
 = Getting Started with Terracotta Clustering
 
 Installing and using Terracotta is as easy as downloading the kit and ensuring that the correct files are on your application's classpath for the client components like Ehcache, and then start the server.
-The only platform requirement is using JDK 1.8 or higher.
+The only platform requirement is using JDK 17 or higher.
 
 == Starting a Terracotta Server
 
@@ -27,10 +27,10 @@ Assuming that you have the clustered Ehcache kit available locally, start with e
 cd <path/to/terracotta/kit>/server/bin
 
 # On Windows:
-start-tc-server.bat -auto-activate -cluster-name tc-cluster -offheap-resources=offheap-1:512MB,offheap-2:512M
+start-tc-server.bat -auto-activate -cluster-name tc-cluster -offheap-resources=offheap-1:512MB,offheap-2:512MB
 
 # On Unix / Mac:
-./start-tc-server.sh -auto-activate -cluster-name tc-cluster -offheap-resources=offheap-1:512MB,offheap-2:512M
+./start-tc-server.sh -auto-activate -cluster-name tc-cluster -offheap-resources=offheap-1:512MB,offheap-2:512MB
 ```
 
 Please pay attention that the command-line supports a lot of settings, which, by default, are locating the server data and logs inside your home folder at: `~/terracotta`
