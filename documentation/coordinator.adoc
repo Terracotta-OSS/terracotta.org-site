@@ -1,0 +1,80 @@
+
+= Coordination Service
+
+The `Coordinator` API provides a simple way to coordinate services that are utilizing Terracotta.
+
+For instance, in a microservice architecture, the services may deployed redundantly (for HA) and/or for horizontal
+scale. As the service instances receive "work" to perform, it may be necessary to ensure work is not performced
+redundantly by multiple service instances, or that units of work are performed in proper sequencing.
+
+The Coordinator API provides a way for arbitrary groups of services to coordate with each other as a "logical cluster"
+by assuming particular roles with the group or "scope".
+
+Within the Coordinate API, groupings are created by Coordinator instances using the same group/scope "token".  The
+token is an arbitrary text string as definied/agreed by the services that want to coordinate together.  This might be
+a string such as "PO_Processing_Services" or "message_receivers" or "worker_nodes" or "foo".
+
+Once one or more services have joined the group by creating a Coordinator using the given token, the serivce can
+utilize the Coordinator service to do things such as getting a list of all other members of the group or to attempt to
+assume a special role withing the group.
+
+Roles represent exclusive responsibilities that only one member may hold at a time. Roles are also arbitrary text
+strings and defined/agreed by the services that want to coordinate together. This might be a string such as "master",
+or "leader" or "standby" or etc.  Only one group member can "acquire" a given role at any given time, and other must
+wait for the role owner to relinquish it before they can assume the role.  There can be many different roles within
+the same group, as coordination needs may require.
+
+The Coordinator API also provides a `Listener` interface, implementors of which are notified of events such as other
+members joining or leaving the group, and roles being acquired or relinquished.  This provides a way ensure other
+services instances are aware of the need to take over a role if the previous owner of the role has left (e.g. crashed).
+
+== Example Usage
+
+[source,java,indent=0]
+----
+    URI clusterUri = URI.create("terracotta://localhost:9410");
+
+    // Create an executor for handling reconnection tasks
+    ExecutorService executor = Executors.newFixedThreadPool(1, Thread::new);
+
+    try {
+      // Create a coordination group with token "sample-group"
+      // Each member of the group must use the same token to join
+      System.out.println("Creating coordinator for 'sample-group'...");
+
+      // Create a coordinator listener to receive notifications
+      SampleCoordinationListener listener = new SampleCoordinationListener();
+
+      // Build the coordinator with a unique member name "myservice-instance-1"
+      try (Coordinator coordinator = ClusteredCoordinator.coordinator(clusterUri, "sample-group", "myservice-instance-1", executor)
+          .withListener(listener)
+          .build()) {
+
+        System.out.println("Successfully joined the coordination group.");
+        System.out.println("Current members: " + coordinator.getMembers());
+
+        // Try to acquire the "primary" role
+        System.out.println("Attempting to acquire 'primary' role...");
+        try (Role primaryRole = coordinator.acquireRole("primary", Duration.ofSeconds(10))) {
+          System.out.println("Successfully acquired 'primary' role.");
+
+          // Execute a task as the role holder with a lease time
+          String result = primaryRole.execute(() -> {
+            System.out.println("Executing task as the 'primary' role holder...");
+            // Simulate some work
+            try { Thread.sleep(1000); } catch (InterruptedException ignore) { Thread.currentThread().interrupt(); }
+            return "Task completed successfully";
+          }, Duration.ofSeconds(10));
+
+          System.out.println("Task result: " + result);
+
+          // Check who holds the role
+          System.out.println("Current holder of 'primary' role: " + coordinator.holder("primary").orElse("None"));
+
+          // Wait a bit to observe the coordination
+          System.out.println("Holding the role for 5 seconds...");
+          try { Thread.sleep(5000); } catch (InterruptedException ignore) { Thread.currentThread().interrupt(); }
+        }
+----
+
+  
