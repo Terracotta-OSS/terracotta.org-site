@@ -14,9 +14,9 @@ permalink: /documentation/
 |===
 |11.1|&nbsp;
 
-|Terracotta 11.1 Documentation|link:https://docs.webmethods.io/on-premises/terracotta/11.1.0/webhelp/index.html[HTML, window="_blank"]
+|Terracotta 11.1 Documentation|link:https://www.ibm.com/docs/en/webmethods-integration/terracotta/11.1.0[HTML, window="_blank"]
 
-|Terracotta 10.x Presentation on High Availability and Failover-Tuning|link:/documentation/Terracotta_10x_Failover_Tuning.pptx[.pptx], link:/documentation/Terracotta_10x_Failover_Tuning.pdf[.pdf]
+|Terracotta 10.x/11.x Presentation on High Availability and Failover-Tuning|link:/documentation/Terracotta_10x_Failover_Tuning.pptx[.pptx], link:/documentation/Terracotta_10x_Failover_Tuning.pdf[.pdf]
 
 |===
 
@@ -24,7 +24,7 @@ permalink: /documentation/
 |===
 |4.4.1|&nbsp;
 
-|BigMemory Max 4.4.1 Documentation|link:https://docs.webmethods.io/on-premises/bigmemory-max/4.4.1/big-memory-max-webhelp/index.html[HTML, window="_blank"]
+|BigMemory Max 4.4.1 Documentation|link:https://www.ibm.com/docs/en/webmethods-integration/bigmemory-max/4.4.1[HTML, window="_blank"]
 
 |===
 
@@ -41,114 +41,53 @@ link:https://confluence.terracotta.org/display/release/Terracotta+and+BigMemory+
 [options="header"]
 |===
 |10.7|&nbsp;
-|Terracotta 10.15 Documentation|https://documentation.softwareag.com/terracotta/terracotta_10-15/webhelp/index.html[HTML, window="_blank"]
+|Terracotta 10.15 Documentation|https://www.ibm.com/docs/en/webmethods-integration/terracotta/10.15.0[HTML, window="_blank"]
 |===
 
 [options="header"]
 |===
 |10.7|&nbsp;
-|Terracotta 10.11 Documentation|https://documentation.softwareag.com/terracotta/terracotta_10-11/webhelp/index.html[HTML, window="_blank"]
+|Terracotta 10.11 Documentation|https://www.ibm.com/docs/en/webmethods-integration/terracotta/10.11.0[HTML, window="_blank"]
 |===
 
 [options="header"]
 |===
 |10.7|&nbsp;
-|Terracotta 10.7 Documentation|https://documentation.softwareag.com/terracotta/terracotta_10-7/webhelp/index.html[HTML, window="_blank"]
+|Terracotta 10.7 Documentation|https://www.ibm.com/docs/en/webmethods-integration/terracotta/10.7.0[HTML, window="_blank"]
 |===
 
 [options="header"]
 |===
 |10.5|&nbsp;
-|Terracotta 10.5 Documentation|https://documentation.softwareag.com/onlinehelp/Rohan/terracotta-db_10-5/webhelp/index.html#page/terracotta-db-webhelp%2Fco-about_tcdb.html%23[HTML, window="_blank"]
+|Terracotta 10.5 Documentation|https://www.ibm.com/docs/en/webmethods-integration/terracotta/10.5.0[HTML, window="_blank"]
 |Terracotta 10.5 Java Doc|link:/files/artifacts/tc-10.5-javadoc.zip[.zip, window="_blank"]
 |===
 
-[options="header"]
-|===
-|10.3|&nbsp;
-|Terracotta 10.3 Documentation|link:https://documentation.softwareag.com/onlinehelp/Rohan/terracotta-db_10-3/webhelp/index.html[HTML, window="_blank"]
-|Terracotta 10.3 Java Doc|link:/files/artifacts/terracotta-store-client-10.3.0.1.87-javadoc.jar[.jar, window="_blank"]
-|===
 
 [options="header"]
 |===
 |4.4.0|&nbsp;
-|BigMemory Max 4.4.0 Documentation|link:https://documentation.softwareag.com/terracotta/terracotta_440/webhelp/bigmemory-max-webhelp/index.html[HTML, window="_blank"]
-|BigMemory Go 4.4.0 Documentation|link:https://documentation.softwareag.com/terracotta/terracotta_440/webhelp/bigmemory-go-webhelp/index.html[HTML, window="_blank"]
-|WebSessions 4.4.0 Documentation|link:https://documentation.softwareag.com/terracotta/terracotta_440/webhelp/web-sessions-webhelp/index.html[HTML, window="_blank"]
+|BigMemory Max 4.4.0 Documentation|link:https://www.ibm.com/docs/en/webmethods-integration/bigmemory-max/4.4.0[HTML, window="_blank"]
 |===
 
 [options="header"]
 |===
 |4.3.10|&nbsp;
-|BigMemory Max 4.3.10 Documentation|link:https://documentation.softwareag.com/terracotta/terracotta_4310/bigmemory-max/webhelp/index.html[HTML, window="_blank"]
-|BigMemory Go 4.3.10 Documentation|link:https://documentation.softwareag.com/terracotta/terracotta_4310/bigmemory-go/webhelp/index.html[HTML, window="_blank"]
-|WebSessions 4.3.10 Documentation|link:https://documentation.softwareag.com/terracotta/terracotta_4310/web-sessions/webhelp/index.html[HTML, window="_blank"]
+|BigMemory Max 4.3.10 Documentation|link:https://www.ibm.com/docs/en/webmethods-integration/bigmemory-max/4.3.10[HTML, window="_blank"]
 |===
 
 [options="header"]
 |===
 |4.3.9|&nbsp;
-|BigMemory Max 4.3.9 Documentation|link:https://documentation.softwareag.com/terracotta/terracotta_439/bigmemory-max/webhelp/index.html[HTML, window="_blank"]
-|BigMemory Go 4.3.9 Documentation|link:https://documentation.softwareag.com/terracotta/terracotta_439/bigmemory-go/webhelp/index.html[HTML, window="_blank"]
-|WebSessions 4.3.9 Documentation|link:https://documentation.softwareag.com/terracotta/terracotta_439/web-sessions/webhelp/index.html[HTML, window="_blank"]
-|BigMemory 4.3.9 / Ehcache 2.10.9 Java Doc|link:https://www.terracotta.org/files/artifacts/ehcache-ee-2.10.9.0-javadoc.zip[.zip, window="_blank"]
+|BigMemory Max 4.3.9 Documentation|link:https://www.ibm.com/docs/en/webmethods-integration/bigmemory-max/4.3.9[HTML, window="_blank"]
 |===
 
 [options="header"]
 |===
 |4.3.8|&nbsp;
-|BigMemory Max 4.3.8 Documentation|link:https://documentation.softwareag.com/onlinehelp/Rohan/terracotta_438/bigmemory-max/webhelp/index.html[HTML, window="_blank"]
-|BigMemory Go 4.3.8 Documentation|link:https://documentation.softwareag.com/onlinehelp/Rohan/terracotta_438/bigmemory-max/webhelp/index.html[HTML, window="_blank"]
-|WebSessions 4.3.8 Documentation|link:https://documentation.softwareag.com/onlinehelp/Rohan/terracotta_438/web-sessions/webhelp/index.html[HTML, window="_blank"]
-|BigMemory 4.3.8 / Ehcache 2.10.8 Java Doc|link:https://www.terracotta.org/files/artifacts/ehcache-ee-2.10.8.3.9-javadoc.zip[.zip, window="_blank"]
+|BigMemory Max 4.3.8 Documentation|link:https://www.ibm.com/docs/en/webmethods-integration/bigmemory-max/4.3.8[HTML, window="_blank"]
 |===
 
-[options="header"]
-|===
-|4.3.7|&nbsp;
-|BigMemory Max 4.3.7 Documentation|link:https://documentation.softwareag.com/onlinehelp/Rohan/terracotta_437/bigmemory-max/webhelp/index.html[HTML, window="_blank"]
-|BigMemory Go 4.3.7 Documentation|link:https://documentation.softwareag.com/onlinehelp/Rohan/terracotta_437/bigmemory-max/webhelp/index.html[HTML, window="_blank"]
-|WebSessions 4.3.7 Documentation|link:https://documentation.softwareag.com/onlinehelp/Rohan/terracotta_437/web-sessions/webhelp/index.html[HTML, window="_blank"]
-|===
-
-[options="header"]
-|===
-|4.3.6|&nbsp;
-|BigMemory Max 4.3.6 Documentation|link:https://documentation.softwareag.com/onlinehelp/Rohan/terracotta_436/bigmemory-max/webhelp/index.html[HTML, window="_blank"]
-|BigMemory Go 4.3.6 Documentation|link:https://documentation.softwareag.com/onlinehelp/Rohan/terracotta_436/bigmemory-go/webhelp/index.html[HTML, window="_blank"]
-|WebSessions 4.3.6 Documentation|link:https://documentation.softwareag.com/onlinehelp/Rohan/terracotta_436/web-sessions/webhelp/index.html[HTML, window="_blank"]
-|===
-
-[options="header"]
-|===
-|4.3.5|&nbsp;
-|BigMemory Max 4.3.5 Documentation|link:https://documentation.softwareag.com/onlinehelp/Rohan/terracotta_435/bigmemory-max/webhelp/index.html[HTML, window="_blank"]
-|BigMemory Go 4.3.5 Documentation|link:https://documentation.softwareag.com/onlinehelp/Rohan/terracotta_435/bigmemory-go/webhelp/index.html[HTML, window="_blank"]
-|WebSessions 4.3.5 Documentation|link:https://documentation.softwareag.com/onlinehelp/Rohan/terracotta_435/web-sessions/webhelp/index.html[HTML, window="_blank"]
-|===
-
-[options="header"]
-|===
-|4.3.4|&nbsp;
-|BigMemory Max 4.3.4 Documentation|link:https://documentation.softwareag.com/onlinehelp/Rohan/terracotta_434/bigmemory-max/webhelp/index.html[HTML, window="_blank"]
-|BigMemory Go 4.3.4 Documentation|link:https://documentation.softwareag.com/onlinehelp/Rohan/terracotta_434/bigmemory-go/webhelp/index.html[HTML, window="_blank"]
-|WebSessions 4.3.4 Documentation|link:https://documentation.softwareag.com/onlinehelp/Rohan/terracotta_434/web-sessions/webhelp/index.html[HTML, window="_blank"]
-|===
-
-[options="header"]
-|===
-|4.1|&nbsp;
-|BigMemory Max 4.1 Documentation|link:https://ww1.terracotta.org/documentation/4.1/bigmemorymax/overview[HTML, window="_blank"]
-|BigMemory Go 4.1 Documentation|link:https://ww1.terracotta.org/documentation/4.1/bigmemorygo[HTML, window="_blank"]
-|WebSessions 4.1 Documentation|link:https://ww1.terracotta.org/documentation/4.1/web-sessions/get-started[HTML, window="_blank"]
-|===
-
-[options="header"]
-|===
-|3.7|&nbsp;
-|Terracotta 3.7 Documentation|link:https://ww1.terracotta.org/documentation/3.7.4/bigmemorymax/overview[HTML, window="_blank"]
-|===
 
 ---
 
