@@ -15,7 +15,6 @@ permalink: /documentation/
 |11.1|&nbsp;
 
 |Terracotta 11.1 Documentation|link:https://www.ibm.com/docs/en/webmethods-integration/terracotta/11.1.0[HTML, window="_blank"]
-
 |Terracotta 10.x/11.x Presentation on High Availability and Failover-Tuning|link:/documentation/Terracotta_10x_Failover_Tuning.pptx[.pptx], link:/documentation/Terracotta_10x_Failover_Tuning.pdf[.pdf]
 
 |===
