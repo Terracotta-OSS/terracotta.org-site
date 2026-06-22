@@ -12,18 +12,18 @@ permalink: /documentation/
 
 [options="header"]
 |===
-|11.1|&nbsp;
+|12.1|&nbsp;
 
-|Terracotta 11.1 Documentation|link:https://www.ibm.com/docs/en/webmethods-integration/terracotta/11.1.0[HTML, window="_blank"]
+|Terracotta 12.1 Documentation|link:https://www.ibm.com/docs/en/webmethods-integration/terracotta/12.1.0[HTML, window="_blank"]
 |Terracotta 10.x/11.x Presentation on High Availability and Failover-Tuning|link:/documentation/Terracotta_10x_Failover_Tuning.pptx[.pptx], link:/documentation/Terracotta_10x_Failover_Tuning.pdf[.pdf]
 
 |===
 
 [options="header"]
 |===
-|4.4.1|&nbsp;
+|4.5.1|&nbsp;
 
-|BigMemory Max 4.4.1 Documentation|link:https://www.ibm.com/docs/en/webmethods-integration/bigmemory-max/4.4.1[HTML, window="_blank"]
+|BigMemory Max 4.5.1 Documentation|link:https://www.ibm.com/docs/en/webmethods-integration/bigmemory-max/4.5.1[HTML, window="_blank"]
 
 |===
 
@@ -38,6 +38,11 @@ link:https://confluence.terracotta.org/display/release/Terracotta+and+BigMemory+
 #### Historical Versions
 
 [options="header"]
+|===
+|11.1|&nbsp;
+|Terracotta 11.1 Documentation|https://www.ibm.com/docs/en/webmethods-integration/terracotta/11.1.0[HTML, window="_blank"]
+|===
+
 |===
 |10.15|&nbsp;
 |Terracotta 10.15 Documentation|https://www.ibm.com/docs/en/webmethods-integration/terracotta/10.15.0[HTML, window="_blank"]
@@ -64,6 +69,11 @@ link:https://confluence.terracotta.org/display/release/Terracotta+and+BigMemory+
 
 
 [options="header"]
+|===
+|4.4.1|&nbsp;
+|BigMemory Max 4.4.1 Documentation|link:https://www.ibm.com/docs/en/webmethods-integration/bigmemory-max/4.1.0[HTML, window="_blank"]
+|===
+
 |===
 |4.4.0|&nbsp;
 |BigMemory Max 4.4.0 Documentation|link:https://www.ibm.com/docs/en/webmethods-integration/bigmemory-max/4.4.0[HTML, window="_blank"]
