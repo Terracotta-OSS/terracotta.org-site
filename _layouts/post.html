@@ -1,80 +1,46 @@
 ---
 layout: default
 ---
+<div class="mx-auto max-w-4xl px-6 py-12 lg:py-16">
+  <a href="/blog/" class="nav-link inline-flex items-center gap-1.5 mb-8">
+    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    Back to blog
+  </a>
 
-<br/>
+  <header class="border-b border-border pb-8">
+    <h1>{{ page.title }}</h1>
+    {% if page.headline %}
+    <p class="mt-3 text-lg leading-relaxed text-content-muted">{{ page.headline }}</p>
+    {% endif %}
 
-{% if page.author %}
-  {% assign author = site.data.authors[page.author] %}
-{% endif %}
-
-<div class="container-fluid">
-
-  <div class="row row-offcanvas row-offcanvas-left">
-
-    <!-- sidebar -->
-    <div class="col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-      {% if author.avatar %}
-      <div>
-        <img src="{{ author.avatar }}" class="bio-photo" alt="{{ author.name }} bio photo"></a>
-      </div>
+    <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-content-muted">
+      {% assign author = site.data.authors[page.author] %}
+      {% if author %}
+      <span class="flex items-center gap-2">
+        {% if author.avatar %}
+        <img src="{{ author.avatar }}" alt="{{ author.name }}" class="h-9 w-9 rounded-full ring-2 ring-border" />
+        {% endif %}
+        <span class="font-medium text-content">{{ author.name }}</span>
+        {% if author.position %}
+        <span class="text-content-muted">· {{ author.position }}</span>
+        {% endif %}
+      </span>
       {% endif %}
-
-      {%if author.web %}
-      <div class="section">By <span class="fn"><a target="_blank" href="{{ author.web }}">{{ author.name }}</a></span></div>
-      {% else %}
-      <div class="section">By <span class="fn">{{ author.name }}</span></div>
+      <time datetime="{{ page.date | date_to_xmlschema }}" class="flex items-center gap-1.5">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        {{ page.date | date: "%B %d, %Y" }}
+      </time>
+      {% if page.tags.size > 0 %}
+      <span class="flex flex-wrap gap-1.5">
+        {% for tag in page.tags %}
+        <a href="/tags/#{{ tag }}" class="badge badge-brand no-underline">{{ tag }}</a>
+        {% endfor %}
+      </span>
       {% endif %}
-
-      <div class="section">
-        {{ author.position }}
-      </div>
-
-      <div class="section entry-date date published"><time datetime="{{ page.date | date_to_xmlschema }}"><i class="fa fa-calendar-o"></i> {{ page.date | date: "%B %d, %Y" }}</time></div>
-
-      {% if page.modified %}<div class="section entry-date date modified"><time datetime="{{ page.modified }}"><i class="fa fa-pencil"></i> {{ page.modified | date: "%B %d, %Y" }}</time></div>{% endif %}
-
-      {% if site.disqus_shortname %}<div class="section entry-comments"><i class="fa fa-comment-o"></i> <a href="#disqus_thread">Leave a comment</a></div>{% endif %}
-
-      {%if author.twitter %}
-      <div class="section">Follow <span class="fn"><a target="_blank" href="{{ author.twitter }}">@{{ author.twitter }}</a></span></div>
-      {% endif %}
-
-      <div class="section">{% include social-share.html %}</div>
-
-      <div class="section">Tags: {% for tag in page.tags %}<a href="/tags/#{{ tag }}" title="Pages tagged {{ tag }}">{{ tag }}</a>{% unless forloop.last %}&nbsp;&bull;&nbsp;{% endunless %}{% endfor %}</div>
-
     </div>
+  </header>
 
-    <!-- main area -->
-    <div class="col-xs-12 col-sm-9">
-
-      <header class="post-header">
-        <h1 class="post-title">{{ page.title }}</h1>
-      </header>
-
-      <article class="post-content">
-
-        <div class="entry-wrapper">
-          <header class="entry-header">
-            <h2 class="entry-title">{% if page.headline %}{{ page.headline }}{% else %}{{ page.title }}{% endif %}</h2>
-          </header>
-
-          <div class="entry-content">
-            {{ content }}
-
-            {% if site.disqus_shortname %}
-            <div id="disqus_thread"></div>
-            {% endif %}
-          </div>
-        </div>
-
-      </article>
-
-    </div>
-
-  </div>
-
+  <article class="prose mt-10 max-w-none">
+    {{ content }}
+  </article>
 </div>
-
-{% include disqus_comments.html %}

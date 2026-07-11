@@ -1,77 +1,66 @@
 # Site settings
 title: Terracotta
 email: tc-oss@wwpdl.vnet.ibm.com
-description: Java's most widely used cache.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://www.terracotta.org" # the base hostname & protocol for your site
-twitter_username: terracottatech
-github_username:  terracotta-oss
-linkedin_username: terracotta
-facebook_username:  Terracotta
-disqus_shortname: ehcache
-
-eh3_source_dir: /_eh3
+description: >-
+  Terracotta provides powerful distributed in-memory data management
+  capabilities for Terracotta products and is the backbone for Terracotta clusters.
+baseurl: ""
+url: "https://www.terracotta.org"
+github_username: terracotta-oss
 
 # Build settings
 markdown: kramdown
-
-gems:
+plugins:
   - jekyll-asciidoc
   - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-toc
 
-webrick:
-  headers:
-    Access-Control-Allow-Origin: "*"
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - package.json
+  - package-lock.json
+  - postcss.config.js
+  - tailwind.config.js
+  - README.md
+  - vendor
+  - .github
+  - apidocs
 
 asciidoctor:
   attributes:
-#    - hardbreaks!
-    - source-highlighter=prettify
-#    - source-highlighter=pygments
-    - pygments-css=style
+    - source-highlighter=prism
     - icons=font
-    - sourcedir=/_eh3
     - sectanchors
     - idprefix
     - idseparator=-
 
 defaults:
-  -
-    values:
-      layout: "default"
-  -
-    scope:
+  - scope:
       path: ""
-      type: "pages"
+      type: pages
     values:
-      layout: "page"
-  -
-    scope:
-      type: "posts"
+      layout: page
+  - scope:
+      path: ""
+      type: posts
     values:
-      layout: "post"
-  -
-    scope:
-      type: "drafts"
+      layout: post
+  - scope:
+      path: "about"
+      type: pages
     values:
-      layout: "post"
-  -
-    scope:
+      layout: about
+  - scope:
       path: "community"
-      type: "pages"
+      type: pages
     values:
-      layout: "community_page"
-  -
-    scope:
+      layout: docs
+  - scope:
       path: "documentation"
-      type: "pages"
+      type: pages
     values:
-      layout: "docs_page"
-  -
-    scope:
-      path: "documentation/2.8"
-      type: "pages"
-    values:
-      layout: "docs4x_page"
-      tc_version: "2.8"
-      tc_javadoc_version: "2.8.5"
+      layout: docs

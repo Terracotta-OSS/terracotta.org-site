@@ -1,40 +1,18 @@
 ---
-layout: default
+layout: page
 title: Terracotta-Related Resources
 headline: Links to all external resources talking about Terracotta, Ehcache, and related software
 ---
 
-<br/>
-
-<div class="container-fluid">
-
-  <div class="row row-offcanvas row-offcanvas-left">
-
-    <!-- sidebar -->
-    <div class="col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-
+<div class="mt-10 space-y-6">
+  {% for post in site.categories.resources %}
+  <article class="card card-hover">
+    <time datetime="{{ post.date | date_to_xmlschema }}" class="text-sm text-content-muted">{{ post.date | date: "%B %d, %Y" }}</time>
+    <h3 class="mt-2 text-lg font-semibold">{{ post.title }}</h3>
+    <p class="mt-1 text-sm text-content-muted">{{ post.headline }}</p>
+    <div class="prose mt-3 max-w-none">
+      {{ post.content }}
     </div>
-
-    <!-- main area -->
-    <div class="col-xs-12 col-sm-9">
-      <header class="post-header">
-      </header>
-      <article class="post-content">
-        <ul class="post-list">
-          {% for post in site.categories.resources %}
-          <li class="entry">
-            <article>
-              <span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></span>
-              <h4>{{ post.title }}</h4>
-              <p>{{ post.headline }}</p>
-              <p>{{ post.content }}</p>
-            </article>
-          </li>
-          {% endfor %}
-        </ul>
-      </article>
-    </div>
-
-  </div>
-
+  </article>
+  {% endfor %}
 </div>

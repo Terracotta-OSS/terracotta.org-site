@@ -1,53 +1,65 @@
+<header data-pagefind-ignore class="sticky top-0 z-50 border-b border-border bg-surface/80 backdrop-blur-lg dark:border-border dark:bg-surface/80">
+  <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3" aria-label="Main navigation">
+    <a href="/" class="flex items-center gap-2 no-underline shrink-0" aria-label="Terracotta home">
+      <img src="/images/Terracotta_Logo_sm.png" alt="Terracotta" class="h-8" />
+    </a>
 
+    <button type="button" data-nav-toggle class="lg:hidden inline-flex items-center justify-center rounded-lg p-2 text-content hover:bg-surface-muted" aria-expanded="false" aria-controls="nav-mobile" aria-label="Toggle navigation menu">
+      <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
 
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="site-title" href="{{ site.baseurl }}/"><img src="/images/Terracotta_Logo_sm.png" style="margin-top:12px;margin-bottom:6px;"/></a>
+    <div class="hidden items-center gap-0.5 lg:flex">
+      <a href="/about/" class="nav-link">About</a>
+      <a href="/documentation/" class="nav-link">Docs</a>
+      <a href="/downloads/" class="nav-link">Download</a>
+
+      <div class="relative group">
+        <button class="nav-link inline-flex items-center gap-1" aria-haspopup="true" aria-expanded="false">
+          Community
+          <svg class="h-4 w-4 transition group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="invisible absolute left-0 top-full z-10 mt-1 w-60 rounded-xl border border-border bg-surface p-2 opacity-0 shadow-xl transition-all duration-150 group-hover:visible group-hover:opacity-100 dark:border-border dark:bg-surface-elevated">
+          <a href="/community/" class="nav-link">Community Overview</a>
+          <a href="/community/contribute.html" class="nav-link">Contributing</a>
+          <div class="my-1 border-t border-border dark:border-border"></div>
+          <a href="https://groups.google.com/g/terracotta-oss" target="_blank" rel="noopener" class="nav-link">Users' Forum ↗</a>
+          <a href="https://github.com/Terracotta-OSS" target="_blank" rel="noopener" class="nav-link">GitHub Repositories ↗</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li id="tc_mnu_about"><a href="/about/"><i class="fa fa-info-circle"></i> About</a></li>
-            <li id="tc_mnu_docs"><a href="/documentation/"><i class="fa fa-book"></i> Docs</a></li>
-            <li id="tc_mnu_download"><a href="/downloads/"><i class="fa fa-download"></i> Download</a></li>
-            <li id="tc_mnu_community" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> Community <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li class="dropdown-header">We Love Contributors</li>
-                <li><a href="/community/contribute.html"><i class="fa fa-code"></i> Contributing</a></li>
-                <!--
-                <li><a href="/resources/"><i class="fa fa-external-link-square"></i> External Resources</a></li>
-                <li><a href="/blog" target="_blank"><i class="fa fa-rss-square"></i> Terracotta Blog</a></li>
-                -->
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Forums</li>
-                <li><a href="https://groups.google.com/g/terracotta-oss" target="_blank"><i class="fa fa-commenting"></i> Users' Forum</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Source Code</li>
-                <li><a href="https://github.com/Terracotta-OSS" target="_blank"><i class="fa fa-github"></i> GitHub  Repositories</a></li>
-                <li><a href="http://svn.terracotta.org/svn/tc/" target="_blank"><i class="fa fa-code-fork"></i> SVN  (Terracotta 4.x)</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Bug Tracking</li>
-                <li><a href="https://github.com/Terracotta-OSS" target="_blank"><i class="fa fa-bug"></i> GitHub  (use respective project)</a></li>
-              </ul>
-            </li>
-          </ul>
-          <!--
-          <ul class="nav navbar-nav navbar-right">
-            <li id="tc_mnu_events"><a href="/events"><i class="fa fa-calendar"></i> News & Events</a></li>
-            <li><a href="/blog"><i class="fa fa-rss-square"></i> Terracotta Blog</a></li>
-          </ul>-->
-        </div><!--/.nav-collapse -->
       </div>
-    </nav>
 
-<br/>
-<br/>
-<br/>
+      <a href="/search/" class="nav-link" aria-label="Search">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M11 18a7 7 0 100-14 7 7 0 000 14z"/></svg>
+      </a>
+
+      <div class="mx-1 h-5 w-px bg-border dark:bg-border"></div>
+
+      <a href="https://github.com/Terracotta-OSS" target="_blank" rel="noopener" class="nav-link" aria-label="GitHub">
+        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
+
+      <button type="button" data-theme-toggle class="nav-link" aria-label="Toggle dark mode">
+        <svg class="h-5 w-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        <svg class="h-5 w-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div id="nav-mobile" data-nav-menu class="hidden lg:hidden border-t border-border px-6 py-4 dark:border-border">
+    <div class="space-y-1">
+      <a href="/about/" class="nav-link">About</a>
+      <a href="/documentation/" class="nav-link">Docs</a>
+      <a href="/downloads/" class="nav-link">Download</a>
+      <p class="px-3 pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-content-muted">Community</p>
+      <a href="/community/" class="nav-link">Community Overview</a>
+      <a href="/community/contribute.html" class="nav-link">Contributing</a>
+      <a href="/search/" class="nav-link">Search</a>
+    </div>
+    <div class="mt-4 flex items-center gap-3 border-t border-border pt-4 dark:border-border">
+      <a href="https://github.com/Terracotta-OSS" target="_blank" rel="noopener" class="nav-link">GitHub ↗</a>
+      <button type="button" data-theme-toggle class="nav-link" aria-label="Toggle dark mode">
+        <svg class="h-5 w-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        <svg class="h-5 w-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>

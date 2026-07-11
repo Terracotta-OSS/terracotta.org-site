@@ -1,31 +1,132 @@
-<!DOCTYPE html>
-<html>
+---
+layout: default
+---
 
-{% include head.html %}
+<!-- Hero -->
+<section class="relative overflow-hidden bg-gradient-to-br from-brand-600 via-brand-700 to-brand-900 text-white">
+  <div class="absolute inset-0 opacity-10" style="background-image: url('/images/body-bg.png'); background-size: cover; background-position: center;"></div>
+  <div class="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-brand-400/20 blur-3xl"></div>
+  <div class="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-brand-300/10 blur-3xl"></div>
 
-<body>
-
-{% include header.html %}
-
-{% include banner.html %}
-
-<div id="intro" class="jumbotron breaker">
-    <div class="container">
-        {% include about_intro.html %}
-        <hr/>
-        {% include home_announcement.html %}
+  <div class="relative mx-auto max-w-7xl px-6 py-20 sm:py-28">
+    <div class="mx-auto max-w-3xl text-center">
+      <img src="/images/Terracotta_Logo_t.png" alt="Terracotta" class="mx-auto mb-8 h-16" />
+      <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl text-balance">
+        Distributed In-Memory Data Management
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/80 sm:text-xl">
+        The Terracotta Server provides powerful distributed in-memory data management
+        capabilities and is the backbone for Terracotta clusters.
+      </p>
+      <div class="mt-10 flex flex-wrap justify-center gap-3">
+        <a href="/downloads/" class="btn bg-white text-brand-700 shadow-lg hover:bg-brand-50">
+          <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><path d="M3 17a1 1 0 011 1h12a1 1 0 110 2H4a1 1 0 01-1-1V3a1 1 0 011-1h7v2H4v13zM14 2a1 1 0 011 1v6.586l1.293-1.293a1 1 0 112.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 011.414-1.414L13 9.586V3a1 1 0 011-1z"/></svg>
+          Download
+        </a>
+        <a href="/documentation/" class="btn bg-white/10 text-white ring-1 ring-white/30 backdrop-blur hover:bg-white/20">
+          <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.255 0 2.443.29 3.5.804V4.804zM10 4.293A7.968 7.968 0 0114.5 4c1.255 0 2.443.29 3.5.804v10A7.969 7.969 0 0014.5 14c-1.255 0-2.443.29-3.5.804V4.293z"/></svg>
+          Documentation
+        </a>
+        <a href="https://github.com/Terracotta-OSS" target="_blank" rel="noopener" class="btn bg-white/10 text-white ring-1 ring-white/30 backdrop-blur hover:bg-white/20">
+          <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
     </div>
-</div>
+  </div>
+</section>
 
-<div id="start" class="breaker">
-    <div class="container">
-        <h1>{{ page.title | replace: '!DOC_VERSION!', page.tc_version }}</h1>
-        {{ content }}
+<!-- Main content -->
+<section class="mx-auto max-w-5xl px-6 py-20">
+  <div class="prose max-w-none">
+    {{ content }}
+  </div>
+</section>
+
+<!-- Features -->
+<section class="border-t border-border bg-surface-muted py-20 dark:border-border dark:bg-surface-muted">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="section-title">Key Features</h2>
+      <p class="mt-3 text-lg text-content-muted">
+        Everything you need for distributed in-memory data management at scale.
+      </p>
     </div>
-</div>
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="card card-hover">
+        <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-brand-600 dark:bg-brand-900/50 dark:text-brand-400">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+        </div>
+        <h3 class="text-lg font-semibold">Distributed In-Memory Data Management</h3>
+        <p class="mt-2 text-sm leading-relaxed text-content-muted">
+          Manages 10-100x more data in memory than traditional data grids — use all of the RAM you wish.
+        </p>
+      </div>
+      <div class="card card-hover">
+        <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-brand-600 dark:bg-brand-900/50 dark:text-brand-400">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 6a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2zm1 5a1 1 0 00-1 1v2a1 1 0 001 1h16a1 1 0 001-1v-2a1 1 0 00-1-1H4z"/></svg>
+        </div>
+        <h3 class="text-lg font-semibold">Scalability Without Complexity</h3>
+        <p class="mt-2 text-sm leading-relaxed text-content-muted">
+          Simple configuration to add server instances to meet growing demand and facilitate capacity planning.
+        </p>
+      </div>
+      <div class="card card-hover">
+        <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-brand-600 dark:bg-brand-900/50 dark:text-brand-400">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M12 21a9 9 0 110-18 9 9 0 010 18z"/></svg>
+        </div>
+        <h3 class="text-lg font-semibold">High Availability</h3>
+        <p class="mt-2 text-sm leading-relaxed text-content-muted">
+          Instant failover for continuous uptime and services without operator intervention.
+        </p>
+      </div>
+      <div class="card card-hover">
+        <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-brand-600 dark:bg-brand-900/50 dark:text-brand-400">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <h3 class="text-lg font-semibold">Configurable Health Monitoring</h3>
+        <p class="mt-2 text-sm leading-relaxed text-content-muted">
+          Terracotta HealthChecker for inter-node monitoring and deep observability.
+        </p>
+      </div>
+      <div class="card card-hover">
+        <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-brand-600 dark:bg-brand-900/50 dark:text-brand-400">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        </div>
+        <h3 class="text-lg font-semibold">Automatic Node Reconnection</h3>
+        <p class="mt-2 text-sm leading-relaxed text-content-muted">
+          Temporarily disconnected server instances and clients rejoin the cluster without operator intervention.
+        </p>
+      </div>
+      <div class="card card-hover">
+        <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-brand-600 dark:bg-brand-900/50 dark:text-brand-400">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2H5zm0 2h14v10H5V5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 9h6m-6 3h6"/></svg>
+        </div>
+        <h3 class="text-lg font-semibold">Fast-Restart Persistence</h3>
+        <p class="mt-2 text-sm leading-relaxed text-content-muted">
+          Advanced persistence and management features available in commercially supported versions.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-{% include footer.html %}
-
-</body>
-
-</html>
+<!-- Sister projects -->
+<section class="border-t border-border py-16 dark:border-border">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="section-title">Part of the Terracotta Ecosystem</h2>
+      <p class="mt-3 text-content-muted">Terracotta is closely related to these open source projects:</p>
+    </div>
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-8">
+      <a href="https://www.ehcache.org" class="card card-hover flex items-center gap-3 no-underline">
+        <img src="/images/ehcache.png" alt="Ehcache" class="h-8" />
+        <span class="text-sm font-semibold">Ehcache</span>
+      </a>
+      <a href="https://www.quartz-scheduler.org" class="card card-hover flex items-center gap-3 no-underline">
+        <img src="/images/logo-quartz-scheduler.png" alt="Quartz Scheduler" class="h-8" />
+        <span class="text-sm font-semibold">Quartz Scheduler</span>
+      </a>
+    </div>
+  </div>
+</section>

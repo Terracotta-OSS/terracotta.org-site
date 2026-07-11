@@ -1,24 +1,12 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
   {% include head.html %}
-
-  <body>
-
+  <body class="min-h-screen flex flex-col">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-brand-500 focus:px-4 focus:py-2 focus:text-white" data-pagefind-ignore>Skip to content</a>
     {% include header.html %}
-
-    <div class="container-fluid">
-      <div id="contentTitle">
-        <h1>{{ page.title | replace: '!DOC_VERSION!', page.tc_version }}</h1>
-      </div>
-      <div>
-        <BR/>
-        {{ content }}
-      </div>
-    </div>
-
+    <main id="main" class="flex-1 w-full" data-pagefind-body>
+      {{ content }}
+    </main>
     {% include footer.html %}
-
   </body>
-
 </html>

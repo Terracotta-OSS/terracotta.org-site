@@ -1,0 +1,80 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Node dependencies
+        run: npm ci || npm install
+
+      - name: Build CSS
+        run: npm run build:css
+
+      - name: Copy Prism assets
+        run: |
+          cp node_modules/prismjs/prism.js assets/js/prism.js
+          cp node_modules/prismjs/components/prism-bash.min.js assets/js/
+          cp node_modules/prismjs/components/prism-java.min.js assets/js/
+          cp node_modules/prismjs/components/prism-javascript.min.js assets/js/
+          cp node_modules/prismjs/components/prism-markup.min.js assets/js/
+          cp node_modules/prismjs/components/prism-xml-doc.min.js assets/js/
+          cp node_modules/prismjs/themes/prism-tomorrow.css assets/css/prism.css
+
+      - name: Build Jekyll
+        run: JEKYLL_ENV=production bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
+      - name: Index with Pagefind
+        run: npx pagefind --site _site
+
+      - name: Link check
+        run: bundle exec htmlproofer _site --allow-hash-href --file-ignore "/apidocs/" --disable-external
+        continue-on-error: true
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,52 +1,26 @@
 ---
-layout: default
+layout: page
 title: Terracotta Blog
 headline: Read all blog posts about the Terracotta Server and related projects
 ---
 
-<br/>
-
-<div class="container-fluid">
-
-  <div class="row row-offcanvas row-offcanvas-left">
-
-    <!-- sidebar -->
-    <div class="col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-
+<div class="mt-10 space-y-6">
+  {% for post in site.categories.blog %}
+  {% if post.hidden != true %}
+  {% assign author = site.data.authors[post.author] %}
+  <article class="card card-hover flex gap-4">
+    {% if author.avatar %}
+    <img src="{{ author.avatar }}" alt="{{ author.name }}" class="h-12 w-12 rounded-full shrink-0 ring-2 ring-border dark:ring-[oklch(0.25_0.005_280)]" />
+    {% endif %}
+    <div class="min-w-0">
+      <time datetime="{{ post.date | date_to_xmlschema }}" class="text-sm text-content-muted">{{ post.date | date: "%B %d, %Y" }}</time>
+      <h3 class="mt-1 text-lg font-semibold"><a href="{{ post.url }}" class="no-underline hover:text-brand-600 dark:hover:text-brand-400">{{ post.title }}</a></h3>
+      <p class="mt-1 text-sm text-content-muted">{{ post.headline }}</p>
+      {% if author.name %}
+      <p class="mt-2 text-xs text-content-muted">By {{ author.name }}</p>
+      {% endif %}
     </div>
-
-    <!-- main area -->
-    <div class="col-xs-12 col-sm-9">
-      <header class="post-header">
-      </header>
-      <article class="post-content">
-        <ul class="post-list">
-          {% for post in site.categories.blog %}
-          {% if post.hidden != true %}
-          <li class="entry">
-            <article>
-              <div style="float: left">
-                <img src="{{ site.data.authors[post.author].avatar }}" class="bio-photo" alt="{{ site.data.authors[post.author].name }} bio photo"></a>
-              </div>
-              <div>
-                <div>
-                  <span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></span>
-                </div>
-                <div>
-                  <h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
-                </div>
-                <div>
-                  <p>{{ post.headline }}</p>
-                </div>
-              </div>
-            </article>
-          </li>
-          {% endif %}
-          {% endfor %}
-        </ul>
-      </article>
-    </div>
-
-  </div>
-
+  </article>
+  {% endif %}
+  {% endfor %}
 </div>

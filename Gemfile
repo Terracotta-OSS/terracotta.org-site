@@ -1,10 +1,16 @@
 source 'https://rubygems.org'
 
-gem 'github-pages'
+gem 'jekyll', '~> 4.3'
 gem 'jekyll-asciidoc'
 gem 'jekyll-sitemap'
-gem 'nokogiri'
-gem 'asciidoctor'
-gem 'jekyll-asciidoc'
-gem 'jekyll-sitemap'
-gem 'webrick'
+gem 'jekyll-seo-tag'
+gem 'jekyll-feed'
+gem 'jekyll-toc'
+
+group :development do
+  gem 'html-proofer'
+end
+
+platforms :ruby do
+  gem 'webrick'
+end
