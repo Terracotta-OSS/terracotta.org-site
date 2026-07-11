@@ -1,0 +1,37 @@
+---
+layout: default
+---
+<div class="mx-auto max-w-7xl px-6 py-12 lg:py-16">
+  <div class="lg:grid lg:grid-cols-[16rem_1fr] lg:gap-12">
+    <aside class="hidden lg:block">
+      <nav class="sticky top-20 space-y-1" aria-label="About navigation">
+        <a href="/about/" class="nav-link {% if page.url == '/about/' %}nav-link-active{% endif %}">About</a>
+        <a href="/about/features.html" class="nav-link {% if page.url == '/about/features.html' %}nav-link-active{% endif %}">Features</a>
+        <a href="/about/license.html" class="nav-link {% if page.url == '/about/license.html' %}nav-link-active{% endif %}">License</a>
+      </nav>
+    </aside>
+
+    <details class="group mb-4 lg:hidden">
+      <summary class="flex cursor-pointer items-center justify-between rounded-lg border border-border px-4 py-2.5 text-sm font-semibold">
+        About Navigation
+        <svg class="h-4 w-4 transition group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <nav class="mt-2 space-y-1 rounded-lg border border-border p-2" aria-label="About navigation">
+        <a href="/about/" class="nav-link {% if page.url == '/about/' %}nav-link-active{% endif %}">About</a>
+        <a href="/about/features.html" class="nav-link {% if page.url == '/about/features.html' %}nav-link-active{% endif %}">Features</a>
+        <a href="/about/license.html" class="nav-link {% if page.url == '/about/license.html' %}nav-link-active{% endif %}">License</a>
+      </nav>
+    </details>
+
+    <div class="min-w-0">
+      <header class="border-b border-border pb-6">
+        <h1>
+          {% if page.visible_title %}{{ page.visible_title }}{% else %}{{ page.title }}{% endif %}
+        </h1>
+      </header>
+      <article class="prose mt-8 max-w-none">
+        {{ content }}
+      </article>
+    </div>
+  </div>
+</div>

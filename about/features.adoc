@@ -1,5 +1,5 @@
 ---
-layout: about_page
+layout: about
 title: Features
 visible_title: "Features of Terracotta Server"
 active_sub_menu_id: tc_mnu_about_features

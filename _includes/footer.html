@@ -1,64 +1,70 @@
-<br/>
-<footer class="site-footer">
-
-  <div class="container">
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        Related Projects:<br/>
-        <a href="https://www.ehcache.org"><img src="/images/ehcache.png" style=""></a><br/><br/>
-        <a href="https://www.quartz-scheduler.org"><img src="/images/logo-quartz-scheduler.png" style="max-height: 32px;"></a>
-
-        <!--
-        <ul class="contact-list">
-          <li>{{ site.title }}</li>
-          <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-        </ul>
-      -->
+<footer data-pagefind-ignore class="border-t border-border bg-surface-muted dark:border-border dark:bg-surface-muted">
+  <div class="mx-auto max-w-7xl px-6 py-14">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="lg:col-span-1">
+        <a href="/" class="flex items-center gap-2 no-underline">
+          <img src="/images/Terracotta_Logo_sm.png" alt="Terracotta" class="h-7" />
+        </a>
+        <p class="mt-4 text-sm leading-relaxed text-content-muted">
+          Distributed in-memory data management for Java applications at scale.
+        </p>
       </div>
 
-    <div class="footer-col  footer-col-2">
-      {% if site.github_username %}
-      <a href="https://github.com/{{ site.github_username }}"><i class="fa fa-github"></i> GitHub</a>
-      <br/>
-      {% endif %}
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-content-muted">Project</h3>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          <li><a href="/about/" class="text-content-muted no-underline hover:text-brand-600 dark:hover:text-brand-400">About</a></li>
+          <li><a href="/about/features.html" class="text-content-muted no-underline hover:text-brand-600 dark:hover:text-brand-400">Features</a></li>
+          <li><a href="/downloads/" class="text-content-muted no-underline hover:text-brand-600 dark:hover:text-brand-400">Downloads</a></li>
+          <li><a href="/about/license.html" class="text-content-muted no-underline hover:text-brand-600 dark:hover:text-brand-400">License</a></li>
+        </ul>
+      </div>
 
-      <a href="/downloads/"><i class="fa fa-download"></i> Download Now</a>
-      <br/>
-      <a href="/documentation/"><i class="fa fa-book"></i> Documentation</a>
-      <br/>
-      <!--
-      <a href="/resources/"><i class="fa fa-external-link-square"></i> Resources</a>
-      <br/>
-      <a href="/blog/"><i class="fa fa-rss-square"></i> Terracotat Blog</a>
-      <br/>
-      -->
-      <a href="/community/"><i class="fa fa-users"></i> Join the Community</a>
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-content-muted">Resources</h3>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          <li><a href="/documentation/" class="text-content-muted no-underline hover:text-brand-600 dark:hover:text-brand-400">Documentation</a></li>
+          <li><a href="/search/" class="text-content-muted no-underline hover:text-brand-600 dark:hover:text-brand-400">Search</a></li>
+          <li><a href="/community/" class="text-content-muted no-underline hover:text-brand-600 dark:hover:text-brand-400">Community</a></li>
+          <li><a href="/community/contribute.html" class="text-content-muted no-underline hover:text-brand-600 dark:hover:text-brand-400">Contributing</a></li>
+          <li><a href="/blog/" class="text-content-muted no-underline hover:text-brand-600 dark:hover:text-brand-400">Blog</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-content-muted">Related Projects</h3>
+        <ul class="mt-4 space-y-3">
+          <li>
+            <a href="https://www.ehcache.org" class="inline-flex items-center no-underline">
+              <img src="/images/ehcache.png" alt="Ehcache" class="h-6" />
+            </a>
+          </li>
+          <li>
+            <a href="https://www.quartz-scheduler.org" class="inline-flex items-center no-underline">
+              <img src="/images/logo-quartz-scheduler.png" alt="Quartz Scheduler" class="h-6" />
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
 
-    </div>
-
-    <div class="container-fluid">
-        <hr/>
-        <div class="footer-text">
-          <em class="copyLeft">Terracotta is Open Source and freely available under the Apache Public License 2.0</em>
-        </div>
+    <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row dark:border-border">
+      <p class="text-sm text-content-muted">
+        Open source under the <a href="/about/license.html" class="font-medium">Apache Public License 2.0</a>.
+      </p>
+      <div class="flex items-center gap-4 text-sm text-content-muted">
+        <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener" class="text-content-muted no-underline hover:text-brand-600 dark:hover:text-brand-400">GitHub</a>
+        <span>·</span>
+        <span>Built with <a href="https://jekyllrb.com/" class="font-medium">Jekyll</a> · Hosted on <a href="https://pages.github.com/" class="font-medium">GitHub Pages</a></span>
+      </div>
     </div>
   </div>
-
 </footer>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-
-<!--  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"/> -->
-
-<script type="text/javascript">
-        $('#{{ page.active_menu_id }}').addClass("active");
-        $('#{{ page.active_sub_menu_id }}').addClass("active");
-</script>
+<script src="/assets/js/prism.js"></script>
+<script src="/assets/js/prism-bash.min.js"></script>
+<script src="/assets/js/prism-java.min.js"></script>
+<script src="/assets/js/prism-javascript.min.js"></script>
+<script src="/assets/js/prism-markup.min.js"></script>
+<script src="/assets/js/prism-xml-doc.min.js"></script>
+<script src="/assets/js/main.js"></script>

@@ -1,0 +1,16 @@
+{%- comment -%}
+  Docs sidebar — shows on /community/ and /documentation/ sections.
+  For terracotta.org, the docs are relatively simple.
+  For ehcache/quartz, this will be replaced with a data-driven version sidebar.
+{%- endcomment -%}
+
+<p class="px-3 pt-2 pb-1 text-xs font-semibold uppercase tracking-wider text-content-muted">Documentation</p>
+<a href="/documentation/" class="nav-link {% if page.url == '/documentation/' %}nav-link-active{% endif %}">Overview</a>
+<a href="/documentation/coordinator.html" class="nav-link {% if page.url == '/documentation/coordinator.html' %}nav-link-active{% endif %}">Coordination Service</a>
+
+<p class="px-3 pt-4 pb-1 text-xs font-semibold uppercase tracking-wider text-content-muted">Community</p>
+<a href="/community/" class="nav-link {% if page.url == '/community/' %}nav-link-active{% endif %}">Community Overview</a>
+<a href="/community/contribute.html" class="nav-link {% if page.url == '/community/contribute.html' %}nav-link-active{% endif %}">Contributing</a>
+
+<p class="px-3 pt-4 pb-1 text-xs font-semibold uppercase tracking-wider text-content-muted">Downloads</p>
+<a href="/downloads/" class="nav-link {% if page.url == '/downloads/' %}nav-link-active{% endif %}">Download Terracotta</a>

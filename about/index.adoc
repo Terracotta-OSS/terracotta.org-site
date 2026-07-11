@@ -1,15 +1,17 @@
 ---
-layout: about_page
+layout: about
 title: About
 visible_title: "Terracotta Server"
 permalink: /about/
 active_sub_menu_id: tc_mnu_about_about
 ---
-:page-liquid:
+The Terracotta Server provides powerful distributed in-memory data management capabilities for Terracotta products (such as https://www.ehcache.org[Ehcache] and TCStore) and is the backbone for Terracotta clusters.
 
-++++
-{% include about_intro.html %}
-++++
+A Terracotta Server Array can vary from a basic two-node tandem to a multi-node array (Terracotta Server Array (TSA)) providing configurable scale, high performance, and deep failover coverage.
+
+Add distributed caching capabilities to your Ehcache deployment today!
+
+Terracotta additionally offers various other open source projects and code libraries which may be of interest.
 
 Visit https://github.com/terracotta-oss for a full list of open source projects and libraries, such as our famous https://github.com/Terracotta-OSS/offheap-store[off-heap memory library].
 

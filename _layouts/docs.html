@@ -1,0 +1,36 @@
+---
+layout: default
+---
+<div class="mx-auto max-w-7xl px-6 py-12 lg:py-16">
+  <div class="lg:grid lg:grid-cols-[16rem_1fr] lg:gap-12">
+    <aside class="hidden lg:block">
+      <nav class="sticky top-20 space-y-1" aria-label="Section navigation">
+        {% include docs-sidebar.html %}
+      </nav>
+    </aside>
+
+    <details class="group mb-4 lg:hidden">
+      <summary class="flex cursor-pointer items-center justify-between rounded-lg border border-border px-4 py-2.5 text-sm font-semibold">
+        Navigation
+        <svg class="h-4 w-4 transition group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <nav class="mt-2 space-y-1 rounded-lg border border-border p-2" aria-label="Section navigation">
+        {% include docs-sidebar.html %}
+      </nav>
+    </details>
+
+    <div class="min-w-0">
+      <header class="border-b border-border pb-6">
+        {% if page.no_title_on_main_layout %}
+        {% else %}
+        <h1>
+          {% if page.visible_title %}{{ page.visible_title | replace: '!DOC_VERSION!', page.tc_version }}{% else %}{{ page.title | replace: '!DOC_VERSION!', page.tc_version }}{% endif %}
+        </h1>
+        {% endif %}
+      </header>
+      <article class="prose mt-8 max-w-none">
+        {{ content | toc }}
+      </article>
+    </div>
+  </div>
+</div>
