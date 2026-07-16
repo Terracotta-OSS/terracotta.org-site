@@ -24,6 +24,16 @@ This is the source code/files for the ehcache.org website.  The files in this re
 
 * To simply generate the site "jekyll build"
 
+
+#### Docker
+
+An example of using a container to build:
+
+```shell
+    # On some Redhat systems, disabling or reconfiguring selinux may be needed to allow read access to volumes
+    docker run --rm -it -v $(pwd):/srv/jekyll -v $(pwd)/_site:/srv/jekyll/_site jekyll/builder:latest sh -x -c "bundle install && JEKYLL_ENV=production bundle exec jekyll build"
+```
+
 ---
 
 
