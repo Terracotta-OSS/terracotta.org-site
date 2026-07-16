@@ -63,7 +63,7 @@ jobs:
           git push $gh_url $gh_branch
         env:
             GITHUB_AUTH: $(gh_user):$(gh_token)
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
+        condition: and(succeeded(),not(eq(variables['Build.Reason'], 'PullRequest')))
         displayName: 'Publish'
       - bash: |
           set -xe
@@ -84,4 +84,4 @@ jobs:
             NETLIFY_SITE_ID: $(netlify_site_id)
             NETLIFY_AUTH_TOKEN: $(netlify_auth_token)
             GTOKEN: $(gh_token)
-        condition: eq(variables['Build.Reason'], 'PullRequest')
+        condition: and(succeeded(),eq(variables['Build.Reason'], 'PullRequest'))
