@@ -26,7 +26,7 @@ jobs:
           #containerCommand: 'sh -x -c "apk add --no-cache fontconfig ttf-freefont && bundle install && bash -e get-deps.sh && JEKYLL_ENV=production jekyll build && bundle exec htmlproofer --only-4xx --empty-alt-ignore --check-html --checks-to-ignore ImageCheck --file-ignore \"/apidocs/,/generated/\" --log-level debug _site"'
           #containerCommand: 'sh -x -c "apk add --no-cache fontconfig ttf-freefont && bundle install && bash -e get-deps.sh && JEKYLL_ENV=production jekyll build"'
           #containerCommand: 'sh -x -c "apk add --no-cache fontconfig ttf-freefont && bundle install && JEKYLL_ENV=production jekyll build"'
-          containerCommand: 'sh -x -c "bundle install && JEKYLL_ENV=production jekyll build"'
+          containerCommand: 'sh -x -c "bundle install && JEKYLL_ENV=production bundle exec jekyll build"'
           detached: false
       - bash: |
           set -e
